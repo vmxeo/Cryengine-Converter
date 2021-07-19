@@ -108,6 +108,13 @@ If you want to convert all the files in a directory as well as all the directori
 ```
 foreach ($file in (get-childitem -recurse *.cga,*.cgf,*.chr,*.skin)) { cgf-converter $file -objectdir <path to the Objects folder> }
 ```
+
+Powershell 7 users can run multiple instances in parallel with the following command:
+
+```
+Get-ChildItem -Recurse *.cga, *.cgf, *.chr, *.skin | ForEach-Object -parallel {cgf-converter $_ -objectdir <path to the Objects folder> }
+```
+
 > **NOTE:** If you run this on the `Objects` directory, it will convert EVERY file in the game.  This can take a very long time, and takes a lot of disk space.  Be careful using the command like this.
 
 Finally, the converter does support being run through the Windows Explorer, so you can just drag a `.cga` file or files onto `cgf-converter.exe` and it'll do a default conversion (to `.dae`).  This isn't ideal, but it is the quick and dirty way if you are morally opposed to using a prompt. :+1:
